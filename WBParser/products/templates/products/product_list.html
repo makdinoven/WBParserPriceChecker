@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Список продуктов</title>
+     {% load static %}
+    <!-- Подключение файла CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'products/css/style.css' %}">
+     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+
+</head>
+<header>
+    <p class="logo">WB Parser</p>
+    <form class="add_product" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="button_add" type="submit">+</button>
+        {% if form.errors %}
+            <p style="color:red;">{{ form.errors }}</p>
+        {% endif %}
+    </form>
+</header>
+<body>
+    <div class="container">
+    {% for item in product_cards %}
+        <div class="card">
+            <div class="image">
+            {% if item.product.image_url %}
+                <img class="card_image" src="{{ item.product.image_url }}" alt="{{ item.product.name }}" width="100">
+            {% else %}
+                <p>Изображение недоступно</p>
+            {% endif %}
+                </div>
+            <h3>
+                <a href="https://www.wildberries.by/catalog/{{ item.product.article }}/detail.aspx">
+                    {{ item.product.name }}
+                </a>
+            </h3>
+            <div class="prices">
+            <p>Цена при добавлении:<br> <b>{{ item.product.initial_price }}</b> руб.</p>
+            <p>Текущая цена: <br> <b>{{ item.current_price }} </b> руб.</p>
+            <p>
+                Изменение цены: <br>
+                {% if item.price_change != 'Недоступно' %}
+                    {% if item.price_change > 0 %}
+                        <p style="color: red;">+{{ item.price_change }} руб. (+{{ item.price_change_percent|floatformat:2 }}%)</p>
+                    {% elif item.price_change < 0 %}
+                        <p style="color: green">{{ item.price_change }} руб. ({{ item.price_change_percent|floatformat:2 }}%)</p>
+                    {% else %}
+                        <p>Без изменений</p>
+                    {% endif %}
+                {% else %}
+                    Недоступно
+                {% endif %}
+            </p>
+            </div>
+            <form action="{% url 'delete_product' item.product.article %}" method="post">
+                {% csrf_token %}
+                <button class="delete" type="submit">УДАЛИТЬ</button>
+            </form>
+        </div>
+    {% empty %}
+        <p>Нет добавленных продуктов.</p>
+    {% endfor %}
+    </div>
+</body>
+</html>

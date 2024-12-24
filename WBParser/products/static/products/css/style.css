@@ -1,0 +1,132 @@
+*,*::before,*::after{
+    box-sizing: border-box;
+}
+body{
+    margin: 0;
+}
+header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+            background-color: rgba(167, 58, 253, .9);
+    height: 115px;
+}
+.add_product{
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+
+}
+.container{
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+    gap:15px;
+    padding-left: 50px ;
+    padding-right: 50px;
+    padding-top: 100px;
+    max-width: 1440px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+}
+
+input{
+    padding-left: 15px;
+width: 920px;
+    height: 75px;
+    color: #242424;
+    appearance: none;
+    caret-color: #a73afd;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background: #fff;
+    border-radius: 12px;
+    margin: 0;
+    font-size: 18px;
+    line-height: 22px;
+    overflow: hidden;
+    border:unset;
+}
+
+input:active{
+    border:unset;
+}
+
+input:focus{
+    border:unset;
+}
+
+.button_add{
+    width: 75px;
+    height: 75px;
+    border-radius: 20px;
+    font-size: 48px;
+    color: white;
+     border-width: unset;
+    border-style: unset;
+    cursor: pointer;
+    background-color: #E06DDE;
+}
+.button_add:hover{
+    border-width: 3px;
+    border-style:solid;
+    border-color: white;
+}
+
+h3{
+    white-space: nowrap;         /* Запрещает перенос строк */
+    overflow: hidden;            /* Обрезает текст, если он выходит за границы */
+    text-overflow: ellipsis;     /* Добавляет многоточие в конце, если текст обрезан */
+    width: 215px;
+}
+
+.card{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+a{
+    color:inherit;
+    text-decoration: unset;
+    font-family: Roboto;
+}
+a:visited {
+    color:inherit;
+}
+
+.image{
+width: 215px;
+    height: 285px;
+}
+
+img{
+    border-radius: 15px;
+    height: 100%;
+    width: 100%;
+}
+
+.delete{
+    font-family: "Roboto";
+    font-weight: 700;
+    font-size: 18px;
+    width: 215px;
+    height: 45px;
+    background-color: rgba(167, 58, 253, .9);
+    color:white;
+    border-radius: 15px;
+    border-width: unset;
+    border-style: unset;
+    cursor: pointer;
+}
+
+.delete:hover{
+    border-width: 3px;
+    border-style:solid;
+    border-color: #E06DDE;
+    color:#E06DDE;
+}
+
+p{
+    font-family: Roboto;
+}
